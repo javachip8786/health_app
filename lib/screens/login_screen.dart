@@ -58,17 +58,17 @@ class _loginScreenState extends State<loginScreen> {
         child: Container(
           decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/bgtheme.png"),
+            image: AssetImage("assets/images/background_img.png"),
             fit: BoxFit.cover,
           ),
         ),
           padding: const EdgeInsets.symmetric(horizontal: 32),
+
+
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
-              
               Flexible(child: Container(), flex: 2,),
 
               Text("Login", style: TextStyle(color: themecolor, fontSize: 32, fontWeight: FontWeight.bold),),
@@ -134,7 +134,7 @@ class _loginScreenState extends State<loginScreen> {
 
               Column(
                 children: [
-                  Image.asset('assets/google_logo.png',height: 30, width: 30,), // <-- SEE HERE
+                  Image.asset('assets/images/google_logo.png',height: 30, width: 30,), // <-- SEE HERE
                 ],
               ),
 

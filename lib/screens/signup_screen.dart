@@ -78,7 +78,7 @@ class _signupScreenState extends State<signupScreen> {
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/bgtheme.png"),
+              image: AssetImage("assets/images/background_img.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -188,7 +188,7 @@ class _signupScreenState extends State<signupScreen> {
 
               Column(
                 children: [
-                  Image.asset('assets/google_logo.png',height: 30, width: 30,), // <-- SEE HERE
+                  Image.asset('assets/images/google_logo.png',height: 30, width: 30,), // <-- SEE HERE
                 ],
               ),
 

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:health_app/screens/signup_screen.dart';
-
-import '../utils/colors.dart';
-import '../utils/colors.dart';
-import '../utils/colors.dart';
+import 'package:health_app/screens/badgespage.dart';
+import 'package:health_app/screens/bmi.dart';
+import 'package:health_app/screens/comparePage.dart';
+import 'package:health_app/screens/trackprogress.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,9 +12,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-    void navigatetoSignUp(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const signupScreen()));
+  void navigatetotrackprogress(){
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+            builder: (context) => const ProgressScreen(
+                readingProgress: 0.5, readingSpeed: 0.7, quizScore: 0.5)),
+      );
   }
+
+  void navigatetoBadgesPage(){
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+            builder: (context) => const BadgesPage(
+                numberOfBadges: 12)),
+      );
+  }
+
+  void navigatetoBmi(){
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+            builder: (context) => BMI1()),
+      );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/bgtheme.png"),
+                image: AssetImage("assets/images/background_img.png"),
                 fit: BoxFit.cover,
               ),
             ),
 
-            padding: const EdgeInsets.symmetric(horizontal: 32),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             width: double.infinity,
 
             child: Column(
@@ -40,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 
 
-                const SizedBox(height: 12,),
+                SizedBox(height: MediaQuery.of(context).size.height*0.01,),
                 // mainAxisAlignment: MainAxisAlignment.start,
 
                 Column(
@@ -95,18 +114,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     ]
                   ),
 
-                  const SizedBox(height: 40,),
+                  SizedBox(height: MediaQuery.of(context).size.height*0.05,),
 
                   Card(
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(
                         color: Colors.white,
+                        width: 5
                       ),
                       borderRadius: BorderRadius.circular(50.0),
                     ),
                     elevation: 50,
                     shadowColor: Colors.black,
-                    color: themecolor,
+                    color: const Color(0xFF9A5EA2),
                     child: SizedBox(
                       width: 300,
                       height: 120,
@@ -129,43 +149,36 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ), 
 
                                 
-                                SizedBox(
+                                const SizedBox(
                                                 width: 5,
                                               ),
 
-                                Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(width: 2),
-                                    shape: BoxShape.circle,
-                                    // You can use like this way or like the below line
-                                    //borderRadius: new BorderRadius.circular(30.0),
-                                    color: Colors.white,
-                                  ),
-                                  child:Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const <Widget>[
-                                      Text('25%',
+
+                                MaterialButton(
+                                  height: 50.0, 
+                                  minWidth: 50.0, 
+                                  onPressed: navigatetotrackprogress,
+                                  color: Colors.white,
+                                  padding: const EdgeInsets.all(16),
+                                  shape: const CircleBorder(),
+                                  child:
+                                    const Text('25%',
                                       style: TextStyle(
                                       fontSize: 15,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
                                     ), ),
-                                    ],
-                                  ),
                                 ),
 
-                                const SizedBox(
-                                  width: 20,
+                                SizedBox(width: MediaQuery.of(context).size.width * 0.05,),
+
+
+                                // Image.asset('assets/images/trophie.png',height: 30, width: 30,),
+
+                                GestureDetector(
+                                  onTap: navigatetoBadgesPage,
+                                  child: Image.asset('assets/images/trophie.png',height: MediaQuery.of(context).size.height*0.05, width: MediaQuery.of(context).size.height*0.05),
                                 ),
-
-
-                                Image.asset('assets/trophie.png',height: 30, width: 30,),
-
-
-
                               ],
                             ),
                           ],
@@ -174,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ), //SizedBox
                   ),
                 
-                const SizedBox(height: 60,),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
 
                 Column(
 
@@ -190,32 +203,29 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                   GestureDetector(
                                         
-                                      onTap: () {
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                              SnackBar(content: Text('Gesture Detected!')));             
-                                      },
-                                      child: Container(
+                                      onTap: navigatetoBmi,
+                                      child: SizedBox(
                                         width: 140,
                                         height: 120,
                                         child: Card(
                                           elevation: 10,
-                                          child: Image.asset('assets/card1.png',height: 30, width: 30,),
                                           color: Colors.white,
                                           shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(50),
                                           ),
+                                          child: Image.asset('assets/images/card1.png',height: 30, width: 30,),
                                         ),
                                       ),
                                   ),
                                   
                                 
-                                Text('other', style: TextStyle(fontSize: 15)),
+                                const Text('other', style: TextStyle(fontSize: 15)),
                               ],
                             ),
                           ),
                           
 
-                          SizedBox(width: 20,),
+                          SizedBox(width: MediaQuery.of(context).size.width*0.05,),
 
                           Column(
                             children: [
@@ -230,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       height: 120,
                                         child: Card(
                                           elevation: 10,
-                                          child: Image.asset('assets/card2.png',height: 30, width: 30,),
+                                          child: Image.asset('assets/images/card2.png',height: 30, width: 30,),
                                           color: Colors.white,
                                           shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(50),
@@ -245,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
 
-                      SizedBox(width: 20,),
+                      SizedBox(width: MediaQuery.of(context).size.width*0.05),
 
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -264,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height: 120,
                                           child: Card(
                                             elevation: 10,
-                                            child: Image.asset('assets/card3.png',height: 30, width: 30,),
+                                            child: Image.asset('assets/images/card3.png',height: 30, width: 30,),
                                             color: Colors.white,
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(50),
@@ -291,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       height: 120,
                                         child: Card(
                                           elevation: 10,
-                                          child: Image.asset('assets/card4.png',height: 30, width: 30,),
+                                          child: Image.asset('assets/images/card4.png',height: 30, width: 30,),
                                           color: Colors.white,
                                           shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(50),
