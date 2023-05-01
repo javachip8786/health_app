@@ -1,6 +1,9 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:health_app/resources/auth_methods.dart';
+import 'package:health_app/resources/auth_service.dart';
 import 'package:health_app/screens/home_screen.dart';
 import 'package:health_app/screens/signup_screen.dart';
 import 'package:health_app/utils/utils.dart';
@@ -45,6 +48,20 @@ class _loginScreenState extends State<loginScreen> {
       _isLoading = false;
     });
   }
+
+
+  // signInWithGoogle() async {
+  //   final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+
+  //   final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+
+  //   final credential = GoogleAuthProvider.credential(
+  //     accessToken: gAuth.accessToken,
+  //     idToken: gAuth.idToken,
+  //   );
+
+  //   return await FirebaseAuth.instance.signInWithCredential(credential);
+  // }
 
   void navigatetoSignUp(){
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const signupScreen()));
@@ -134,7 +151,14 @@ class _loginScreenState extends State<loginScreen> {
 
               Column(
                 children: [
-                  Image.asset('assets/images/google_logo.png',height: 30, width: 30,), // <-- SEE HERE
+                  GestureDetector(
+                    onTap: () => AuthService().signInWithGoogle(),
+                    // onTap: () {
+                    //                   ScaffoldMessenger.of(context).showSnackBar(
+                    //                         SnackBar(content: Text('Gesture Detected!')));             
+                    //                 },
+                    child: Image.asset('assets/images/google_logo.png', height: 30, width: 30,),
+                  ),
                 ],
               ),
 

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math';
 
 import 'package:health_app/screens/comparePage.dart';
+import 'package:health_app/screens/home_screen.dart';
 
 class BMI1 extends StatefulWidget {
   @override
@@ -91,6 +92,21 @@ class _BMI1State extends State<BMI1> {
         //       fontSize: 20,
         //       fontWeight: FontWeight.normal),
         // )),
+
+        appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
+          },
+        ),
+        title: Text(
+          'BMI',
+          style: TextStyle(
+              color: const Color(0xFF9A5EA2),
+              fontSize: 30 * MediaQuery.of(context).size.width / 411),
+        ),
+      ),
         body: Stack(
       children: [
         Container(

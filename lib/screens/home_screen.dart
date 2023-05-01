@@ -1,17 +1,27 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:health_app/screens/HealthyLivingPage.dart';
 import 'package:health_app/screens/badgespage.dart';
 import 'package:health_app/screens/bmi.dart';
 import 'package:health_app/screens/comparePage.dart';
+// import 'package:health_app/screens/hypertenstion.dart';
 import 'package:health_app/screens/trackprogress.dart';
+// import 'package:health_app/screens/hypertenstion.dart';
+import 'package:health_app/screens/hypertensionPage.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  // User? user = _auth.currentUser;
+
+
   void navigatetotrackprogress(){
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -32,6 +42,22 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
             builder: (context) => BMI1()),
+      );
+  }
+
+  void healthyLivingPage(){
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+            builder: (context) => HealthyLivingPage()),
+      );
+  }
+
+
+
+    void navigatetoHypertenstion(){
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+            builder: (context) => const HypertensionPage()),
       );
   }
 
@@ -231,10 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               GestureDetector(
               
-                                    onTap: () {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                            SnackBar(content: Text('Gesture Detected!')));             
-                                    },
+                                    onTap: healthyLivingPage,
                                     child: Container(
                                       width: 140,
                                       height: 120,
@@ -265,10 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 GestureDetector(
                                         
-                                      onTap: () {
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                              SnackBar(content: Text('Gesture Detected!')));             
-                                      },
+                                      onTap: navigatetoHypertenstion,
                                       child: Container(
                                         width: 140,
                                         height: 120,

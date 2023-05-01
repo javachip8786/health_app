@@ -48,17 +48,34 @@ class AuthMethods {
     required String email,
     required String password
   }) async {
-    String res = "Some Error Occurred";
+    String res = "Wrong Email or Password";
 
-    try {
+  try {
       if(email.isNotEmpty || password.isNotEmpty){
-          _auth.signInWithEmailAndPassword(email: email, password: password);
-          res = "success";
+          _auth.signInWithEmailAndPassword(email: email, password: password)
+          .then((UserCredential userCredential) {
+          // User sign-in successful, access user and credential properties
+          User? user = userCredential.user;
+          if(user != null){
+            res = "success";
+          }
+        })
+        .catchError((error) {
+          // Handle sign-in error
+          print(error);
+        });
       }
-      else{
-        res = "Please enter all the fields";
-      }
-    }
+  }
+
+    // try {
+    //   if(email.isNotEmpty || password.isNotEmpty){
+    //       _auth.signInWithEmailAndPassword(email: email, password: password);
+    //       res = "success";
+    //   }
+    //   else{
+    //     res = "Please enter all the fields";
+    //   }
+    // }
     catch(err) {
       res = err.toString();
     }

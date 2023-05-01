@@ -10,6 +10,8 @@ import 'package:health_app/utils/utils.dart';
 import 'package:health_app/widgets/text_field_input.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../resources/auth_service.dart';
+
 class signupScreen extends StatefulWidget {
   const signupScreen({super.key});
 
@@ -188,7 +190,10 @@ class _signupScreenState extends State<signupScreen> {
 
               Column(
                 children: [
-                  Image.asset('assets/images/google_logo.png',height: 30, width: 30,), // <-- SEE HERE
+                  GestureDetector(
+                    onTap: () => AuthService().signInWithGoogle(),
+                    child: Image.asset('assets/images/google_logo.png', height: 30, width: 30,),
+                  ),
                 ],
               ),
 
