@@ -134,7 +134,7 @@ class _HypertensionPageState extends State<HypertensionPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
+            Navigator.of(context).pop(context);
           },
         ),
         title: Text(

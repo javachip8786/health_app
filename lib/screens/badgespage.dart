@@ -15,12 +15,14 @@ class BadgesPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
+            Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           'Your Badges',
-          style: TextStyle(color: Color(0xFF9A5EA2), fontSize: 30),
+          style: TextStyle(
+              color: const Color(0xFF9A5EA2),
+              fontSize: 30 * MediaQuery.of(context).size.width / 411),
         ),
       ),
       body: Stack(
@@ -42,7 +44,8 @@ class BadgesPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.7,
                     decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(45)),
+                        borderRadius: BorderRadius.circular(
+                            45 * MediaQuery.of(context).size.width / 411)),
                     child: Column(children: [
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
@@ -53,7 +56,8 @@ class BadgesPage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.26,
                           decoration: BoxDecoration(
                             color: const Color(0xFF9A5EA2),
-                            borderRadius: BorderRadius.circular(45),
+                            borderRadius: BorderRadius.circular(
+                                45 * MediaQuery.of(context).size.width / 411),
                           ),
                           // ignore: prefer_const_constructors
                           child: Center(
@@ -62,7 +66,9 @@ class BadgesPage extends StatelessWidget {
                               '$numberOfBadges/15',
                               // ignore: prefer_const_constructors
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 20 *
+                                      MediaQuery.of(context).size.width /
+                                      411,
                                   fontFamily: 'Cabin Condensed',
                                   fontWeight: FontWeight.w400,
                                   color: Colors.white),
@@ -81,7 +87,7 @@ class BadgesPage extends StatelessWidget {
                             child: Image.asset(
                               'assets/images/badge_${index + 1}${isUnlocked ? "" : "_greyed"}.png',
                               height: MediaQuery.of(context).size.height * 0.1,
-                              width: MediaQuery.of(context).size.height * 0.1,
+                              width: MediaQuery.of(context).size.width * 0.15,
                             ),
                           );
                         }),

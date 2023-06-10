@@ -30,14 +30,6 @@ class _HealthyLivingPageState extends State<HealthyLivingPage> {
   static const String subtopic3 =
       ' Given the dynamic nature of science, there perhaps is a constant and regular need to revisit and update the information provided in this app and this will be our continued effort. FSSAI is of the opinion that eating right is as important as eating safe. ';
 
-  static const String subheading4 = 'Secondary HealthyLiving';
-  static const String subtopic4 =
-      'While primary HealthyLiving is the most common form of HealthyLiving, secondary HealthyLiving can also occur as a result of an underlying medical condition. In this section, we will explore the different pre-existing conditions that can lead to secondary HealthyLiving.';
-
-  static const String subheading5 =
-      'Managing HealthyLiving through Diet and Lifestyle Changes';
-  static const String subtopic5 =
-      'The management of HealthyLiving involves a combination of lifestyle changes, medication, and monitoring. In this section, we will discuss the different dietary and lifestyle changes that can be made to manage HealthyLiving, including the DASH diet, regular exercise, and stress management techniques.';
   List<Widget> topics = [];
   List<String> subheadings = [
     subheading1,
@@ -132,7 +124,8 @@ class _HealthyLivingPageState extends State<HealthyLivingPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
           },
         ),
         title: Text(

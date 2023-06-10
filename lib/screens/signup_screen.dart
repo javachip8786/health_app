@@ -5,6 +5,7 @@ import 'package:health_app/resources/auth_methods.dart';
 import 'package:health_app/screens/home_screen.dart';
 import 'package:health_app/screens/login_screen.dart';
 import 'package:health_app/utils/colors.dart';
+import 'package:health_app/utils/globals.dart';
 import 'package:health_app/utils/utils.dart';
 
 import 'package:health_app/widgets/text_field_input.dart';
@@ -58,6 +59,7 @@ class _signupScreenState extends State<signupScreen> {
     );
 
     if(res == "success"){
+      currentUserEmail = _emailController.text;
       Navigator.of(this.context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()));
     }
     else{

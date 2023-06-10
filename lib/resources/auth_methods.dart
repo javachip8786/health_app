@@ -31,8 +31,10 @@ class AuthMethods {
           // 'bio' : bio,
           'email' : email,
           // 'photoUrl' : photoUrl
-          'score' : 0,
-          'reads' : 0,
+          'quiz score' : 0,
+          'read speed' : 0,
+          'read' : 0,
+          'total score': 0
         });
         res = "success";
       } 

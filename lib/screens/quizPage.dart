@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 // import 'package:diet_app/answer.dart';
 // import 'package:diet_app/question.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:health_app/screens/answer.dart';
 import 'package:health_app/screens/question.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   var _questionId = -1;
   var _totalScore = 0;
   bool _showFinalScore = false;
@@ -59,6 +62,18 @@ class _QuizPageState extends State<QuizPage> {
     },
   ];
 
+  void upload() async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    print("Currrrrr Userrssssss =====  + user");
+
+    print("Total Score Value is  $_totalScore");
+
+    await _firestore.collection('users').doc(user!.uid).update({
+      'quiz score' : _totalScore,
+    });
+  }
+
   void _answerQuestion(bool isCorrect) {
     if (isCorrect) {
       setState(() {
@@ -67,8 +82,10 @@ class _QuizPageState extends State<QuizPage> {
     }
     setState(() {
       _questionId++;
+      // upload;
       if (_questionId >= questions.length) {
         _showFinalScore = true;
+        // upload;
       }
     });
   }
@@ -76,8 +93,10 @@ class _QuizPageState extends State<QuizPage> {
   void _skipQuestion() {
     setState(() {
       _questionId++;
+      // upload;
       if (_questionId >= questions.length) {
         _showFinalScore = true;
+        // upload;
       }
     });
   }
@@ -243,6 +262,7 @@ class _QuizPageState extends State<QuizPage> {
                                   borderRadius: BorderRadius.circular(45))),
                           onPressed: () {
                             if (!_showFinalScore) {
+                              // upload;
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -253,14 +273,16 @@ class _QuizPageState extends State<QuizPage> {
                                       actions: <Widget>[
                                         TextButton(
                                           onPressed: () {
+                                            upload;
                                             Navigator.of(context).pop();
                                           },
                                           child: const Text('Cancel'),
                                         ),
                                         TextButton(
                                           onPressed: () {
+                                            upload;
                                             Navigator.of(context).pop();
-                                            Navigator.of(context).pop();
+                                            // Navigator.of(context).pop();
                                           },
                                           child: const Text('Exit'),
                                         ),
@@ -268,9 +290,11 @@ class _QuizPageState extends State<QuizPage> {
                                     );
                                   });
                             } else {
+                              upload;
                               Navigator.of(context).pop();
                             }
                           },
+                          
                           child: const Text('Exit Quiz'),
                         ),
                     ],
